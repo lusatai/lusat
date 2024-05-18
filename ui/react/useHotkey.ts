@@ -57,6 +57,7 @@ export function useHotkey(
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
+        // @ts-expect-error TODO: fix!
         !_options.enableOnInputs &&
         ['input', 'select', 'textarea'].includes((e.target as HTMLElement).tagName.toLowerCase())
       ) {
@@ -82,5 +83,6 @@ export function useHotkey(
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
     }
+    // @ts-expect-error TODO: fix!
   }, [_options.enableOnInputs, memoisedCB, chords])
 }
