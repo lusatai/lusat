@@ -1,4 +1,4 @@
-import { DependencyList, useCallback, useEffect } from 'react'
+import { type DependencyList, useCallback, useEffect } from 'react'
 import { getDevicePlatform, parseChords } from '~/shared'
 
 type Handler = (e?: KeyboardEvent) => void
@@ -42,10 +42,8 @@ export function useHotkey(
 ) {
   const chords = parseChords(hotkey)
 
-  const _options =
-    (!(options instanceof Array) ? options : !(deps instanceof Array) ? deps : {}) ?? {}
-  const _deps: DependencyList =
-    options instanceof Array ? options : deps instanceof Array ? deps : []
+  const _options = (!Array.isArray(options) ? options : !Array.isArray(deps) ? deps : {}) ?? {}
+  const _deps: DependencyList = Array.isArray(options) ? options : Array.isArray(deps) ? deps : []
   const callback: Handler = typeof action === 'object' ? action.call : action
 
   const memoisedCB = useCallback(callback, _deps)

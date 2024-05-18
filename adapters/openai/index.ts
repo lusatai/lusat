@@ -73,7 +73,7 @@ export function gptFunctionCallToWorkflow<TActions extends Actions>(
   if (!action) {
     throw new Error(`Unknown function "${gptFunctionCall.name}".`)
   }
-  let input
+  let input: unknown
   if (action.arity === 'unary') {
     input = action.inputParser.parse(JSON.parse(gptFunctionCall.arguments))
   }

@@ -1,5 +1,5 @@
-import { Actions } from '~/core/action'
-import { Workflow } from '~/core/workflow'
+import type { Actions } from '~/core/action'
+import type { Workflow } from '~/core/workflow'
 
 /** An example user prompt and workflow, used for testing and reasoning. */
 export type Example<T extends Actions> = { prompt: string; workflow: Workflow<T> }
